@@ -18,10 +18,7 @@
 <img align="right" src="https://gifdb.com/images/high/animated-man-computer-coding-nae6mec378lsg1i3.gif" width="230">
 
 ## 🧑‍💻 Professional Summary  
-DevOps & SRE Engineer with 3+ years of experience in designing, automating, and optimizing  
-large-scale cloud-native infrastructure. Skilled in Kubernetes, AWS, Terraform, Jenkins,  
-observability platforms, and distributed systems. Passionate about reliability, scalability,  
-and building well-architected cloud platforms.
+DevOps & SRE Engineer with 3+ years of experience in designing, automating, and optimizing large-scale cloud-native infrastructure. Skilled in Kubernetes, AWS, Terraform, Jenkins, observability platforms, and distributed systems. Passionate about reliability, scalability, and building well-architected cloud platforms.
 
 
 ## 🔧 Key Tools & Technologies
