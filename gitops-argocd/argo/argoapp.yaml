@@ -1,0 +1,55 @@
+
+---
+
+## 📄 ArgoCD Application (Multi-Source)
+
+This repository uses a **multi-source ArgoCD Application**:
+
+- **Source 1** → Helm chart repository (application templates)
+- **Source 2** → GitOps repository (environment-specific values)
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-dev
+  namespace: argocd
+spec:
+  project: argo-test-project #project name to deploy in k8s
+  sources:
+    - repoURL: https://github.com/org/helm-charts-templates
+      targetRevision: main #templates branch name
+      path: microservices
+      helm:
+        valueFiles:
+          - $values/zone1/dev/values.yaml #this is the path where actural devops values.yaml contains
+
+    - repoURL: https://github.com/org/gitops
+      targetRevision: main #gitops repository branch name
+      ref: values
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: myapp #give namspace
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=false
+      - Validate=true
+      - ApplyOutOfSyncOnly=false
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+      - FailOnSharedResource=true
+      - ServerSideApply=false
+
+    retry:
+      limit: 5
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 5m
+
